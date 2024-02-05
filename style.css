@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+
+* {
+    line-height: 1;
+    box-sizing: border-box;
+}
+
+/* Hapus padding dan margin html default */
+body {
+    margin: 0px;
+    padding: 4px;
+
+    width: 256px;
+
+    font-family: "Quicksand", Arial, Helvetica, sans-serif;
+}
+
+/* Flex */
+body, .vertical, .panel-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.horizontal {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+}
+
+.panel-stats__values {
+    gap: 0px;
+}
+
+/* Panel */
+.panel, .panel-stats {
+    background: #ffffff;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+
+    padding: 4px;
+}
+
+
+#timer > * {
+    width: 100%;
+}
+
+/* Teks */
+.panel-stats__value {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.panel-stats__key {
+    font-size: 12px;
+    color: #616161;
+    font-weight: 500;
+}
