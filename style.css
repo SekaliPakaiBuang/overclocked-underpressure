@@ -46,7 +46,7 @@ body, .vertical, .panel-stats {
 }
 
 
-#timer > * {
+#timer > *, .settings-row > * {
     width: 100%;
 }
 
@@ -99,4 +99,11 @@ hr {
 .actionbar__btn:active {
     transform: scale(1);
     cursor: pointer;
+}
+
+/* Field pengaturan */
+.settings-row__name, .settings-row__value {
+    justify-self: center;
+    align-self: center;
+    font-size: 12px;
 }
