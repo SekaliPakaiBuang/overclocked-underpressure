@@ -5,6 +5,8 @@
     box-sizing: border-box;
 
     font-family: "Quicksand", Arial, Helvetica, sans-serif;
+
+    transition: all calc(1s/5);
 }
 
 /* Hapus padding dan margin default */
@@ -16,7 +18,9 @@ body {
 }
 
 /* Flex */
-body, .vertical, .panel-stats {
+body,
+.vertical,
+.panel-stats {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -30,6 +34,7 @@ body, .vertical, .panel-stats {
 
 .center {
     justify-content: center;
+    text-align: center;
 }
 
 .panel-stats__values {
@@ -37,7 +42,8 @@ body, .vertical, .panel-stats {
 }
 
 /* Panel */
-.panel, .panel-stats {
+.panel,
+.panel-stats {
     background: #ffffff;
     border-radius: 4px;
     border: 1px solid #e0e0e0;
@@ -46,7 +52,8 @@ body, .vertical, .panel-stats {
 }
 
 
-#timer > *, .settings-row > * {
+#timer>*,
+.settings-row>* {
     width: 100%;
 }
 
@@ -92,7 +99,7 @@ hr {
 
 /* Tombol action */
 .actionbar__btn:hover {
-    transform: scale(1.1);
+    transform: scale(1.25);
     cursor: pointer;
 }
 
@@ -102,7 +109,8 @@ hr {
 }
 
 /* Field pengaturan */
-.settings-row__name, .settings-row__value {
+.settings-row__name,
+.settings-row__value {
     justify-self: center;
     align-self: center;
     font-size: 12px;

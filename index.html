@@ -40,29 +40,53 @@
     </div>
 
     <div id="settings" class="panel vertical">
-        <div class="actionbar horizontal center">
+        <!-- Kontrol Timer -->
+        <div class="horizontal center">
             <img src="svg/play.svg" width="16" height="16" class="actionbar__btn" title="Start Timer">
             <img src="svg/pause.svg" width="16" height="16" class="actionbar__btn" title="Pause Timer">
             <img src="svg/repeat.svg" width="16" height="16" class="actionbar__btn" title="Reset Timer">
         </div>
         <hr>
+
+        <!-- Manual Override -->
+        <div class="settings-row horizontal">
+            <div class="settings-row vertical">
+                <div class="settings-row__name center">Inc/Dec Time</div>
+                <input type="number" name="add_time" class="settings-row__value" step="1" min="0">
+                <div class="horizontal center">
+                    <img src="svg/plus-circle.svg" width="16" height="16" class="actionbar__btn" title="Increase Time">
+                    <img src="svg/minus-circle.svg" width="16" height="16" class="actionbar__btn" title="Decrease Time">
+                </div>
+            </div>
+            <div class="settings-row vertical">
+                <div class="settings-row__name center">Inc/Dec Speed</div>
+                <input type="number" name="add_speed" class="settings-row__value" step="0.01" min="0">
+                <div class="horizontal center">
+                    <img src="svg/plus-circle.svg" width="16" height="16" class="actionbar__btn" title="Increase Speed">
+                    <img src="svg/minus-circle.svg" width="16" height="16" class="actionbar__btn"
+                        title="Decrease Speed">
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <!-- Pengaturan Donathon -->
         <div class="settings-row horizontal">
             <div class="settings-row__name">Initial Time (sec)</div>
-            <input type="number" name="" id="initial_time" class="settings-row__value" step="1" min="0" placeholder="3600">
+            <input type="number" name="initial_time" class="settings-row__value" step="1" min="0">
         </div>
         <div class="settings-row horizontal">
             <div class="settings-row__name">Max Time (sec)</div>
-            <input type="number" name="" id="max_time" class="settings-row__value" step="1" min="0" placeholder="3600">
+            <input type="number" name="max_time" class="settings-row__value" step="1" min="0">
         </div>
         <div class="settings-row horizontal">
             <div class="settings-row__name">Initial Speed</div>
-            <input type="number" name="" id="initial_time" class="settings-row__value" step="0.01" min="0" placeholder="1">
+            <input type="number" name="initial_time" class="settings-row__value" step="0.01" min="0">
         </div>
         <div class="settings-row horizontal">
             <div class="settings-row__name">Max Speed</div>
-            <input type="number" name="" id="initial_time" class="settings-row__value" step="0.01" min="0" placeholder="1">
+            <input type="number" name="initial_time" class="settings-row__value" step="0.01" min="0">
         </div>
-        <hr>
         <hr>
     </div>
 </body>
