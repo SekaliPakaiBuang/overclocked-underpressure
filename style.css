@@ -98,12 +98,12 @@ hr {
 }
 
 /* Tombol action */
-.actionbar__btn:hover {
+.btn:hover {
     transform: scale(1.25);
     cursor: pointer;
 }
 
-.actionbar__btn:active {
+.btn:active {
     transform: scale(1);
     cursor: pointer;
 }
