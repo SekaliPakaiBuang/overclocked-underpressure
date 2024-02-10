@@ -42,9 +42,9 @@
     <div id="settings" class="panel vertical">
         <!-- Kontrol Timer -->
         <div class="horizontal center">
-            <img id="btn__play" src="svg/play.svg" width="16" height="16" class="btn" title="Start Timer">
-            <img id="btn__pause" src="svg/pause.svg" width="16" height="16" class="btn" title="Pause Timer">
-            <img id="btn__reset" src="svg/repeat.svg" width="16" height="16" class="btn" title="Reset Timer">
+            <img id="btn__timer-play" src="svg/play.svg" width="16" height="16" class="btn" title="Start Timer">
+            <img id="btn__timer-pause" src="svg/pause.svg" width="16" height="16" class="btn" title="Pause Timer">
+            <img id="btn__timer-reset" src="svg/repeat.svg" width="16" height="16" class="btn" title="Reset Timer">
         </div>
         <hr>
 
@@ -54,16 +54,16 @@
                 <div class="settings-row__name center">Inc/Dec Time</div>
                 <input type="number" name="add_time" class="settings-row__value" step="1" min="0">
                 <div class="horizontal center">
-                    <img src="svg/plus-circle.svg" width="16" height="16" class="btn" title="Increase Time">
-                    <img src="svg/minus-circle.svg" width="16" height="16" class="btn" title="Decrease Time">
+                    <img id="btn__time-increase" src="svg/plus-circle.svg" width="16" height="16" class="btn" title="Increase Time">
+                    <img id="btn__time-decrease" src="svg/minus-circle.svg" width="16" height="16" class="btn" title="Decrease Time">
                 </div>
             </div>
             <div class="settings-row vertical">
                 <div class="settings-row__name center">Inc/Dec Speed</div>
                 <input type="number" name="add_speed" class="settings-row__value" step="0.01" min="0">
                 <div class="horizontal center">
-                    <img src="svg/plus-circle.svg" width="16" height="16" class="btn" title="Increase Speed">
-                    <img src="svg/minus-circle.svg" width="16" height="16" class="btn"
+                    <img id="btn__speed-increase" src="svg/plus-circle.svg" width="16" height="16" class="btn" title="Increase Speed">
+                    <img id="btn__speed-decrease" src="svg/minus-circle.svg" width="16" height="16" class="btn"
                         title="Decrease Speed">
                 </div>
             </div>
@@ -87,7 +87,12 @@
             <div class="settings-row__name">Max Speed</div>
             <input type="number" name="max_speed" class="settings-row__value" step="0.01" min="0">
         </div>
+        <div class="horizontal center">
+            <img id="btn__save-timer" src="svg/save.svg" width="16" height="16" class="btn" title="Save">
+        </div>
         <hr>
+
+        <script type="module" src="js/init.js"></script>
     </div>
 </body>
 
