@@ -25,4 +25,16 @@ const resetBtn = document.querySelector("#btn__timer-reset");
 
 const timerSettingSaveBtn = document.querySelector("#btn__save-timer");
 
-// Variabel
+// Inisialisasi variable
+if (typeof localStorage.initialTime === "undefined") localStorage.initialTime = 3600;
+if (typeof localStorage.initialSpeed === "undefined") localStorage.initialSpeed = 1;
+if (typeof localStorage.time === "undefined") localStorage.time = localStorage.initialTime;
+if (typeof localStorage.speed === "undefined") localStorage.speed = localStorage.initialSpeed;
+
+let isRunning = false;
+
+timeLabel.textContent = localStorage.time;
+speedLabel.textContent = localStorage.speed;
+
+initialTimeInput.valueAsNumber = localStorage.initialTime;
+initialSpeedInput.valueAsNumber = localStorage.initialSpeed;

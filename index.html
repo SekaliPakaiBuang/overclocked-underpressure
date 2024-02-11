@@ -13,7 +13,7 @@
         <div id="timer-time" class="panel-stats horizontal">
             <img src="svg/timer.svg" alt="" width="32" height="32" class="panel-stats__icon">
             <div class="panel-stats__values vertical">
-                <div class="panel-stats__value">1h</div>
+                <div class="panel-stats__value">0</div>
                 <div class="panel-stats__key">Time Left</div>
             </div>
         </div>
@@ -21,7 +21,7 @@
         <div id="timer-speed" class="panel-stats horizontal">
             <img src="svg/speed.svg" alt="" width="32" height="32" class="panel-stats__icon">
             <div class="panel-stats__values vertical">
-                <div class="panel-stats__value">1x</div>
+                <div class="panel-stats__value">1</div>
                 <div class="panel-stats__key">Time Speed</div>
             </div>
         </div>
@@ -54,15 +54,18 @@
                 <div class="settings-row__name center">Inc/Dec Time</div>
                 <input type="number" name="add_time" class="settings-row__value" step="1" min="0">
                 <div class="horizontal center">
-                    <img id="btn__time-increase" src="svg/plus-circle.svg" width="16" height="16" class="btn" title="Increase Time">
-                    <img id="btn__time-decrease" src="svg/minus-circle.svg" width="16" height="16" class="btn" title="Decrease Time">
+                    <img id="btn__time-increase" src="svg/plus-circle.svg" width="16" height="16" class="btn"
+                        title="Increase Time">
+                    <img id="btn__time-decrease" src="svg/minus-circle.svg" width="16" height="16" class="btn"
+                        title="Decrease Time">
                 </div>
             </div>
             <div class="settings-row vertical">
                 <div class="settings-row__name center">Inc/Dec Speed</div>
                 <input type="number" name="add_speed" class="settings-row__value" step="0.01" min="0">
                 <div class="horizontal center">
-                    <img id="btn__speed-increase" src="svg/plus-circle.svg" width="16" height="16" class="btn" title="Increase Speed">
+                    <img id="btn__speed-increase" src="svg/plus-circle.svg" width="16" height="16" class="btn"
+                        title="Increase Speed">
                     <img id="btn__speed-decrease" src="svg/minus-circle.svg" width="16" height="16" class="btn"
                         title="Decrease Speed">
                 </div>
@@ -92,7 +95,8 @@
         </div>
         <hr>
 
-        <script type="module" src="js/init.js"></script>
+        <script defer src="js/init.js"></script>
+        <script defer src="js/logic.js"></script>
     </div>
 </body>
 

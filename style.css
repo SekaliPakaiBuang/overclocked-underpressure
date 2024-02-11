@@ -69,6 +69,10 @@ body,
     font-weight: 500;
 }
 
+#timer-speed .panel-stats__value::after {
+    content: "x";
+}
+
 /* Tabel */
 hr {
     border: 0.5px solid #e0e0e0;
