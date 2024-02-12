@@ -13,7 +13,7 @@
         <div id="timer-time" class="panel-stats horizontal">
             <img src="svg/timer.svg" alt="" width="32" height="32" class="panel-stats__icon">
             <div class="panel-stats__values vertical">
-                <div class="panel-stats__value">0</div>
+                <div class="panel-stats__value">--</div>
                 <div class="panel-stats__key">Time Left</div>
             </div>
         </div>
@@ -21,17 +21,17 @@
         <div id="timer-speed" class="panel-stats horizontal">
             <img src="svg/speed.svg" alt="" width="32" height="32" class="panel-stats__icon">
             <div class="panel-stats__values vertical">
-                <div class="panel-stats__value">1</div>
-                <div class="panel-stats__key">Time Speed</div>
+                <div class="panel-stats__value">--</div>
+                <div class="panel-stats__key">Overclock Factor</div>
             </div>
         </div>
     </div>
 
     <div class="panel vertical">
         <div class="criteria-table">
-            <div class="criteria-table__header">Trakteer Unit</div>
+            <div class="criteria-table__header">Trakteer Unit(s)</div>
             <div class="criteria-table__header">Time Increase</div>
-            <div class="criteria-table__header">Speed Increase</div>
+            <div class="criteria-table__header">Overclock</div>
         </div>
         <hr>
         <div id="criteria" class="criteria-table">
@@ -39,11 +39,10 @@
         </div>
     </div>
 
-    <div id="settings" class="panel vertical">
+    <div id="settings" class="panel vertical hidden">
         <!-- Kontrol Timer -->
         <div class="horizontal center">
-            <img onclick="playTimer()" src="svg/play.svg" width="16" height="16" class="btn" title="Start Timer">
-            <img onclick="pauseTimer()" src="svg/pause.svg" width="16" height="16" class="btn" title="Pause Timer">
+            <img id="play" onclick="toggleTimer(this)" src="svg/play.svg" width="16" height="16" class="btn" title="Play Timer">
             <img onclick="resetTimer()" src="svg/repeat.svg" width="16" height="16" class="btn" title="Reset Timer">
         </div>
         <hr>
@@ -51,19 +50,19 @@
         <!-- Manual Override -->
         <div class="settings-row horizontal">
             <div class="settings-row vertical">
-                <div class="settings-row__name center">Inc/Dec Time</div>
+                <div class="settings-row__name center">Inc/Dec Time (sec)</div>
                 <input type="number" name="add_time" class="settings-row__value" step="1">
                 <div class="horizontal center">
                     <img onclick="addTime()" src="svg/plus-circle.svg" width="16" height="16" class="btn"
-                        title="Increase Time">
+                        title="Add Time">
                 </div>
             </div>
             <div class="settings-row vertical">
-                <div class="settings-row__name center">Inc/Dec Speed</div>
+                <div class="settings-row__name center">Inc/Dec Speed (%)</div>
                 <input type="number" name="add_speed" class="settings-row__value" step="1">
                 <div class="horizontal center">
                     <img onclick="addSpeed()" src="svg/plus-circle.svg" width="16" height="16" class="btn"
-                        title="Increase Speed">
+                        title="Add Speed">
                 </div>
             </div>
         </div>
@@ -71,7 +70,7 @@
 
         <!-- Pengaturan Donathon -->
         <div class="settings-row horizontal">
-            <div class="settings-row__name">Initial Time (sec)</div>
+            <div class="settings-row__name">Starting Time (sec)</div>
             <input type="number" name="initial_time" class="settings-row__value" step="1" min="0">
         </div>
         <div class="settings-row horizontal">
@@ -79,7 +78,7 @@
             <input type="number" name="max_time" class="settings-row__value" step="1" min="0">
         </div>
         <div class="settings-row horizontal">
-            <div class="settings-row__name">Initial Speed (%)</div>
+            <div class="settings-row__name">Starting Speed (%)</div>
             <input type="number" name="initial_speed" class="settings-row__value" step="1" min="0">
         </div>
         <div class="settings-row horizontal">
@@ -90,10 +89,15 @@
             <img onclick="saveTimerSettings()" src="svg/save.svg" width="16" height="16" class="btn" title="Save">
         </div>
         <hr>
-
-        <script defer src="js/init.js"></script>
-        <script defer src="js/logic.js"></script>
+        
     </div>
+
+    <div class="horizontal center">
+        <img onclick="toggleSettings(this)" src="svg/dropdown.svg" width="16" height="16" class="btn">
+    </div>
+    
+    <script defer src="js/init.js"></script>
+    <script defer src="js/logic.js"></script>
 </body>
 
 </html>

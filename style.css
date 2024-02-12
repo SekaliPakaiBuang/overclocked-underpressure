@@ -14,7 +14,7 @@ body {
     margin: 0px;
     padding: 4px;
 
-    width: 256px;
+    width: 320px;
 }
 
 /* Flex */
@@ -46,7 +46,7 @@ body,
 .panel-stats {
     background: #ffffff;
     border-radius: 4px;
-    border: 1px solid #e0e0e0;
+    border: 2px solid #e0e0e0;
 
     padding: 4px;
 }
@@ -123,6 +123,10 @@ hr {
 /* Animasi */
 .blink {
     animation: blink calc(1s/3) step-end 4;
+}
+
+.hidden {
+    display: none;
 }
 
 @keyframes blink {

@@ -12,16 +12,25 @@ function saveTimerSettings() {
     else alert("Initial Time & Initial Speed should be greater than zero");
 }
 
-function playTimer() {
-    if (!isRunning) {
-        isRunning = true;
-        clock = setInterval(onClockTick, 100000 / Number(localStorage.speed));
-    }
-}
 
-function pauseTimer() {
-    isRunning = false;
-    clearInterval(clock);
+function toggleTimer(el) {
+    switch (isRunning) {
+        case false:
+            isRunning = true;
+            clock = setInterval(onClockTick, 100000 / Number(localStorage.speed));
+
+            el.src = "svg/pause.svg";
+            el.title = "Pause Timer";
+            break;
+
+        case true:
+            isRunning = false;
+            clearInterval(clock);
+
+            el.src = "svg/play.svg";
+            el.title = "Play Timer";
+            break;
+    }
 }
 
 function resetTimer() {
@@ -31,12 +40,13 @@ function resetTimer() {
     localStorage.time = localStorage.initialTime;
     localStorage.speed = localStorage.initialSpeed;
 
-    timeLabel.textContent = localStorage.time;
+    timeLabel.textContent = styleTime(localStorage.time);
     speedLabel.textContent = localStorage.speed;
 
+    document.querySelector("#play").src = "svg/play.svg";
 }
 
-async function addTime() {
+function addTime() {
     const input = Math.trunc(modifyTimeInput.valueAsNumber);
     if (isNaN(input)) return;
 
@@ -48,13 +58,13 @@ async function addTime() {
         clearInterval(clock);
     }
 
-    timeLabel.textContent = localStorage.time;
+    timeLabel.textContent = styleTime(localStorage.time);
     timeLabel.classList.add("blink");
 
     setTimeout(() => timeLabel.classList.remove("blink"), 1500);
 }
 
-async function addSpeed() {
+function addSpeed() {
     const input = Math.trunc(modifySpeedInput.valueAsNumber);
     if (isNaN(input)) return;
 
@@ -73,6 +83,11 @@ async function addSpeed() {
     setTimeout(() => speedLabel.classList.remove("blink"), 1500);
 }
 
+function toggleSettings(el) {
+    settingsPanel.classList.toggle("hidden");
+    el.style.transform = settingsPanel.classList.contains("hidden") ? "" : "rotate(180deg)";
+}
+
 // Logic timer
 let clock;
 let isRunning = false;
@@ -86,5 +101,5 @@ function onClockTick() {
         clearInterval(clock);
     }
 
-    timeLabel.textContent = localStorage.time;
+    timeLabel.textContent = styleTime(localStorage.time);
 }
