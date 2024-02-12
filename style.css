@@ -119,3 +119,22 @@ hr {
     align-self: center;
     font-size: 12px;
 }
+
+/* Animasi */
+.blink {
+    animation: blink calc(1s/3) step-end 4;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

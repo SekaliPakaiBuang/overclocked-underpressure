@@ -36,35 +36,41 @@ function resetTimer() {
 
 }
 
-function addTime() {
+async function addTime() {
     const input = Math.trunc(modifyTimeInput.valueAsNumber);
     if (isNaN(input)) return;
-    
+
     localStorage.time = Number(localStorage.time) + input;
-    
+
     if (localStorage.time <= 0) {
         isRunning = false;
         localStorage.time = 0;
         clearInterval(clock);
     }
-    
+
     timeLabel.textContent = localStorage.time;
+    timeLabel.classList.add("blink");
+
+    setTimeout(() => timeLabel.classList.remove("blink"), 1500);
 }
 
-function addSpeed() {
+async function addSpeed() {
     const input = Math.trunc(modifySpeedInput.valueAsNumber);
     if (isNaN(input)) return;
 
     localStorage.speed = Number(localStorage.speed) + input;
 
-    if (localStorage.speed<=0) localStorage.speed = 1;
-
-    speedLabel.textContent = localStorage.speed;
+    if (localStorage.speed <= 0) localStorage.speed = 1;
 
     if (isRunning) {
         clearInterval(clock);
         clock = setInterval(onClockTick, 100000 / Number(localStorage.speed));
     }
+
+    speedLabel.textContent = localStorage.speed;
+    speedLabel.classList.add("blink");
+
+    setTimeout(() => speedLabel.classList.remove("blink"), 1500);
 }
 
 // Logic timer
