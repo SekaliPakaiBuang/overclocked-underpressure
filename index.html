@@ -60,7 +60,7 @@
             </div>
             <div class="settings-row vertical">
                 <div class="settings-row__name center">Inc/Dec Speed</div>
-                <input type="number" name="add_speed" class="settings-row__value" step="0.01">
+                <input type="number" name="add_speed" class="settings-row__value" step="1">
                 <div class="horizontal center">
                     <img onclick="addSpeed()" src="svg/plus-circle.svg" width="16" height="16" class="btn"
                         title="Increase Speed">
@@ -79,12 +79,12 @@
             <input type="number" name="max_time" class="settings-row__value" step="1" min="0">
         </div>
         <div class="settings-row horizontal">
-            <div class="settings-row__name">Initial Speed</div>
-            <input type="number" name="initial_speed" class="settings-row__value" step="0.01" min="0">
+            <div class="settings-row__name">Initial Speed (%)</div>
+            <input type="number" name="initial_speed" class="settings-row__value" step="1" min="0">
         </div>
         <div class="settings-row horizontal">
-            <div class="settings-row__name">Max Speed</div>
-            <input type="number" name="max_speed" class="settings-row__value" step="0.01" min="0">
+            <div class="settings-row__name">Max Speed (%)</div>
+            <input type="number" name="max_speed" class="settings-row__value" step="1" min="0">
         </div>
         <div class="horizontal center">
             <img onclick="saveTimerSettings()" src="svg/save.svg" width="16" height="16" class="btn" title="Save">

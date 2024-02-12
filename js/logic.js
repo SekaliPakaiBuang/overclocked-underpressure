@@ -15,7 +15,7 @@ function saveTimerSettings() {
 function playTimer() {
     if (!isRunning) {
         isRunning = true;
-        clock = setInterval(onClockTick, 1000 / Number(localStorage.speed));
+        clock = setInterval(onClockTick, 100000 / Number(localStorage.speed));
     }
 }
 
@@ -38,19 +38,33 @@ function resetTimer() {
 
 function addTime() {
     const input = Math.trunc(modifyTimeInput.valueAsNumber);
+    if (isNaN(input)) return;
+    
     localStorage.time = Number(localStorage.time) + input;
-
+    
     if (localStorage.time <= 0) {
         isRunning = false;
         localStorage.time = 0;
         clearInterval(clock);
     }
-
+    
     timeLabel.textContent = localStorage.time;
 }
 
 function addSpeed() {
-    // TODO: Tambah kecepatan timer (awas rounding error)
+    const input = Math.trunc(modifySpeedInput.valueAsNumber);
+    if (isNaN(input)) return;
+
+    localStorage.speed = Number(localStorage.speed) + input;
+
+    if (localStorage.speed<=0) localStorage.speed = 1;
+
+    speedLabel.textContent = localStorage.speed;
+
+    if (isRunning) {
+        clearInterval(clock);
+        clock = setInterval(onClockTick, 100000 / Number(localStorage.speed));
+    }
 }
 
 // Logic timer

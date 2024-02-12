@@ -70,7 +70,7 @@ body,
 }
 
 #timer-speed .panel-stats__value::after {
-    content: "x";
+    content: "%";
 }
 
 /* Tabel */

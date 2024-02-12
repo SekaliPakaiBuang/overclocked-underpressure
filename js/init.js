@@ -14,7 +14,7 @@ const modifySpeedInput = document.querySelector("input[name=add_speed]");
 
 // Inisialisasi variable
 if (typeof localStorage.initialTime === "undefined") localStorage.initialTime = 3600;
-if (typeof localStorage.initialSpeed === "undefined") localStorage.initialSpeed = 1;
+if (typeof localStorage.initialSpeed === "undefined") localStorage.initialSpeed = 100;
 if (typeof localStorage.time === "undefined") localStorage.time = localStorage.initialTime;
 if (typeof localStorage.speed === "undefined") localStorage.speed = localStorage.initialSpeed;
 
