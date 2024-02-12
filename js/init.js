@@ -30,7 +30,7 @@ initialSpeedInput.valueAsNumber = localStorage.initialSpeed;
 // Fungsi global
 function styleTime(time) {
     let seconds = time;
-    if (time==0) return "0s";
+    if (time == 0) return "0s";
 
     const days = Math.floor(seconds / (24 * 60 * 60));
     seconds -= days * (24 * 60 * 60);
@@ -44,19 +44,19 @@ function styleTime(time) {
     let places = 2;
     let out = "";
 
-    if (places>0 && days > 0) {
+    if (places > 0 && days > 0) {
         out += `${days}d`;
         places--;
     }
-    if (places>0 && hours > 0) {
+    if (places > 0 && hours > 0) {
         out += `${hours}h`;
         places--;
     }
-    if (places>0 && minutes > 0) {
+    if (places > 0 && minutes > 0) {
         out += `${minutes}m`;
         places--;
     }
-    if (places>0 && seconds > 0) {
+    if (places > 0 && seconds > 0) {
         out += `${seconds}s`;
         places--;
     }
