@@ -17,7 +17,7 @@ function toggleTimer(el) {
     switch (isRunning) {
         case false:
             isRunning = true;
-            clock = setInterval(onClockTick, 100000 / Number(localStorage.speed));
+            clock = setInterval(onClockTick, 100000 / trueSpeedScale);
 
             el.src = "svg/pause.svg";
             el.title = "Pause Timer";
@@ -39,6 +39,9 @@ function resetTimer() {
 
     localStorage.time = localStorage.initialTime;
     localStorage.speed = localStorage.initialSpeed;
+
+    oneSecondScale = (localStorage.speed >= 5000) ? localStorage.speed / 5000 : 1;
+    trueSpeedScale = oneSecondScale == 1 ? Number(localStorage.speed) : 5000;
 
     timeLabel.textContent = styleTime(localStorage.time);
     speedLabel.textContent = localStorage.speed;
@@ -72,9 +75,12 @@ function addSpeed() {
 
     if (localStorage.speed <= 0) localStorage.speed = 1;
 
+    oneSecondScale = (localStorage.speed >= 5000) ? localStorage.speed / 5000 : 1;
+    trueSpeedScale = oneSecondScale == 1 ? Number(localStorage.speed) : 5000;
+
     if (isRunning) {
         clearInterval(clock);
-        clock = setInterval(onClockTick, 100000 / Number(localStorage.speed));
+        clock = setInterval(onClockTick, 100000 / Number(trueSpeedScale));
     }
 
     speedLabel.textContent = localStorage.speed;
@@ -93,12 +99,11 @@ let clock;
 let isRunning = false;
 
 function onClockTick() {
-    localStorage.time -= 1;
+    localStorage.time -= oneSecondScale;
 
     if (localStorage.time <= 0) {
-        isRunning = false;
         localStorage.time = 0;
-        clearInterval(clock);
+        toggleTimer(document.querySelector("#play"));
     }
 
     timeLabel.textContent = styleTime(localStorage.time);

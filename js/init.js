@@ -27,9 +27,12 @@ speedLabel.textContent = localStorage.speed;
 initialTimeInput.valueAsNumber = localStorage.initialTime;
 initialSpeedInput.valueAsNumber = localStorage.initialSpeed;
 
+let oneSecondScale = (localStorage.speed >= 5000) ? localStorage.speed / 5000 : 1;
+let trueSpeedScale = oneSecondScale == 1 ? localStorage.speed : 5000;
+
 // Fungsi global
 function styleTime(time) {
-    let seconds = time;
+    let seconds = Math.trunc(time);
     if (time == 0) return "0s";
 
     const days = Math.floor(seconds / (24 * 60 * 60));
