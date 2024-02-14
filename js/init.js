@@ -27,8 +27,10 @@ speedLabel.textContent = localStorage.speed;
 initialTimeInput.valueAsNumber = localStorage.initialTime;
 initialSpeedInput.valueAsNumber = localStorage.initialSpeed;
 
-let oneSecondScale = (localStorage.speed >= 5000) ? localStorage.speed / 5000 : 1;
-let trueSpeedScale = oneSecondScale == 1 ? localStorage.speed : 5000;
+const maxSpeedRate = 3000 // Kompensasi setInterval()
+let oneSecondScale = 1;
+let trueSpeedScale = 1;
+setScale();
 
 // Fungsi global
 function styleTime(time) {
@@ -65,4 +67,9 @@ function styleTime(time) {
     }
 
     return out;
+}
+
+function setScale() {
+    oneSecondScale = (localStorage.speed >= maxSpeedRate) ? localStorage.speed / maxSpeedRate : 1;
+    trueSpeedScale = oneSecondScale == 1 ? localStorage.speed : maxSpeedRate;
 }
