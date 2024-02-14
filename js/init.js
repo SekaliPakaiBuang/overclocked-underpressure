@@ -12,8 +12,9 @@ const maxSpeedInput = document.querySelector("input[name=max_speed]");
 const modifyTimeInput = document.querySelector("input[name=add_time]");
 const modifySpeedInput = document.querySelector("input[name=add_speed]");
 
-// Panel pengaturan
+// Panel
 const settingsPanel = document.querySelector("#settings");
+const criteriaPanel = document.querySelector("#criteria");
 
 // Tombol
 const playPauseBtn = document.querySelector("#btn__playpause");
@@ -24,10 +25,15 @@ if (typeof localStorage.initialTime === "undefined") localStorage.initialTime = 
 if (typeof localStorage.initialSpeed === "undefined") localStorage.initialSpeed = 100;
 if (typeof localStorage.time === "undefined") localStorage.time = localStorage.initialTime;
 if (typeof localStorage.speed === "undefined") localStorage.speed = localStorage.initialSpeed;
+if (typeof localStorage.criteria === "undefined") localStorage.criteria = JSON.stringify([{ unit: 1, time: 2, speed: 3 }]);
 
+// Inisialisasi timer
 timeLabel.textContent = styleTime(localStorage.time);
 speedLabel.textContent = localStorage.speed;
 
+printCriteria();
+
+// Inisialisasi input
 initialTimeInput.valueAsNumber = localStorage.initialTime;
 initialSpeedInput.valueAsNumber = localStorage.initialSpeed;
 
@@ -71,7 +77,26 @@ function styleTime(time) {
     return out;
 }
 
-function setScale() {
-    oneSecondScale = (localStorage.speed >= maxSpeedRate) ? localStorage.speed / maxSpeedRate : 1;
-    trueSpeedScale = oneSecondScale == 1 ? localStorage.speed : maxSpeedRate;
+function printCriteria() {
+    criteriaPanel.innerHTML = "";
+    JSON.parse(localStorage.criteria).forEach(el => {
+        const { unit, time, speed } = el;
+        console.table(el)
+
+        let unitElement = document.createElement("div");
+        let timeElement = document.createElement("div");
+        let speedElement = document.createElement("div");
+
+        unitElement.classList.add("criteria-table__value");
+        timeElement.classList.add("criteria-table__value");
+        speedElement.classList.add("criteria-table__value");
+
+        unitElement.textContent = unit;
+        timeElement.textContent = time;
+        speedElement.textContent = speed;
+
+        criteriaPanel.appendChild(unitElement);
+        criteriaPanel.appendChild(timeElement);
+        criteriaPanel.appendChild(speedElement);
+    });
 }
