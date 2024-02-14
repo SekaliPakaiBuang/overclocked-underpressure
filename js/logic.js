@@ -60,7 +60,7 @@ function toggleTimer() {
             break;
         case true:
             isRunning = false;
-            localStorage.time = (targetTimestamp - now) / 1000;
+            localStorage.time = (targetTimestamp - now) / 1000 * (localStorage.speed/100);
 
             playPauseBtn.src = "svg/play.svg";
             break;
