@@ -84,7 +84,7 @@ let loop = () => {
         localStorage.time = (targetTimestamp - now) / 1000 * (localStorage.speed/100);
 
         if (localStorage.time <= 0) {
-            isRunning = true;
+            isRunning = false;
             localStorage.time = 0;
 
             playPauseBtn.src = "svg/play.svg";
