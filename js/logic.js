@@ -12,97 +12,57 @@ function saveTimerSettings() {
     else alert("Initial Time & Initial Speed should be greater than zero");
 }
 
+function toggleSettings() {
+    settingsPanel.classList.toggle("hidden");
+}
 
-function toggleTimer(el) {
+function toggleTimer(pressedTimestamp = performance.now()) {
+    if (localStorage.time <= 0) return;
     switch (isRunning) {
         case false:
             isRunning = true;
-            clock = setInterval(onClockTick, 100000 / trueSpeedScale);
+            startTimestamp = pressedTimestamp;
+            targetTimestamp = startTimestamp + (localStorage.time * 100000 / localStorage.speed);
 
-            el.src = "svg/pause.svg";
-            el.title = "Pause Timer";
+            playPauseBtn.src = "svg/pause.svg";
             break;
-
         case true:
             isRunning = false;
-            clearInterval(clock);
+            localStorage.time = (targetTimestamp - pressedTimestamp) / 1000;
 
-            el.src = "svg/play.svg";
-            el.title = "Play Timer";
+            playPauseBtn.src = "svg/play.svg";
             break;
     }
 }
 
 function resetTimer() {
     isRunning = false;
-    clearInterval(clock);
 
     localStorage.time = localStorage.initialTime;
     localStorage.speed = localStorage.initialSpeed;
 
-    setScale();
-
-    timeLabel.textContent = styleTime(localStorage.time);
-    speedLabel.textContent = localStorage.speed;
-
-    document.querySelector("#play").src = "svg/play.svg";
-}
-
-function addTime() {
-    const input = Math.trunc(modifyTimeInput.valueAsNumber);
-    if (isNaN(input)) return;
-
-    localStorage.time = Number(localStorage.time) + input;
-
-    if (localStorage.time <= 0) {
-        isRunning = false;
-        localStorage.time = 0;
-        clearInterval(clock);
-    }
-
-    timeLabel.textContent = styleTime(localStorage.time);
-    timeLabel.classList.add("blink");
-
-    setTimeout(() => timeLabel.classList.remove("blink"), 1500);
-}
-
-function addSpeed() {
-    const input = Math.trunc(modifySpeedInput.valueAsNumber);
-    if (isNaN(input)) return;
-
-    localStorage.speed = Number(localStorage.speed) + input;
-
-    if (localStorage.speed <= 0) localStorage.speed = 1;
-
-    setScale();
-
-    if (isRunning) {
-        clearInterval(clock);
-        clock = setInterval(onClockTick, 100000 / Number(trueSpeedScale));
-    }
-
-    speedLabel.textContent = localStorage.speed;
-    speedLabel.classList.add("blink");
-
-    setTimeout(() => speedLabel.classList.remove("blink"), 1500);
-}
-
-function toggleSettings(el) {
-    settingsPanel.classList.toggle("hidden");
-    el.style.transform = settingsPanel.classList.contains("hidden") ? "" : "rotate(180deg)";
+    playPauseBtn.src = "svg/play.svg";
 }
 
 // Logic timer
-let clock;
-let isRunning = false;
+let loop = () => {
+    if (isRunning) {
+        let now = performance.now();
 
-function onClockTick() {
-    localStorage.time -= oneSecondScale;
+        localStorage.time = (targetTimestamp - now) / 1000;
 
-    if (localStorage.time <= 0) {
-        localStorage.time = 0;
-        toggleTimer(document.querySelector("#play"));
+        if (localStorage.time <= 0) {
+            isRunning = true;
+            localStorage.time = 0;
+
+
+            playPauseBtn.src = "svg/play.svg";
+        }
     }
 
     timeLabel.textContent = styleTime(localStorage.time);
+    speedLabel.textContent = localStorage.speed;
+
+    requestAnimationFrame(loop);
 }
+loop();

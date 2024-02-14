@@ -15,6 +15,10 @@ const modifySpeedInput = document.querySelector("input[name=add_speed]");
 // Panel pengaturan
 const settingsPanel = document.querySelector("#settings");
 
+// Tombol
+const playPauseBtn = document.querySelector("#btn__playpause");
+const resetBtn = document.querySelector("#btn__reset");
+
 // Inisialisasi variable
 if (typeof localStorage.initialTime === "undefined") localStorage.initialTime = 3600;
 if (typeof localStorage.initialSpeed === "undefined") localStorage.initialSpeed = 100;
@@ -27,19 +31,22 @@ speedLabel.textContent = localStorage.speed;
 initialTimeInput.valueAsNumber = localStorage.initialTime;
 initialSpeedInput.valueAsNumber = localStorage.initialSpeed;
 
-const maxSpeedRate = 3000 // Kompensasi setInterval()
-let oneSecondScale = 1;
-let trueSpeedScale = 1;
-setScale();
+// Variabel global
+let isRunning = false;
+let startTimestamp = 0;
+let targetTimestamp = 0;
 
 // Fungsi global
 function styleTime(time) {
-    let seconds = Math.trunc(time);
+    let seconds = Math.ceil(time);
     if (time == 0) return "0s";
 
-    const days = Math.floor(time / (24 * 60 * 60));
-    const hours = Math.floor(time / (60 * 60));
-    const minutes = Math.floor(time / 60);
+    let days = Math.floor(seconds / (24 * 60 * 60));
+    seconds -= days * (24 * 60 * 60);
+    let hours = Math.floor(seconds / (60 * 60));
+    seconds -= hours * (60 * 60);
+    let minutes = Math.floor(seconds / 60);
+    seconds -= minutes * 60;
 
     let places = 2;
     let out = "";
@@ -56,8 +63,8 @@ function styleTime(time) {
         out += `${minutes}m`;
         places--;
     }
-    if (places > 0 && seconds%60 > 0) {
-        out += `${seconds%60}s`;
+    if (places > 0 && seconds > 0) {
+        out += `${seconds}s`;
         places--;
     }
 
