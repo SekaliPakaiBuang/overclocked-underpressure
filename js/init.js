@@ -37,14 +37,9 @@ function styleTime(time) {
     let seconds = Math.trunc(time);
     if (time == 0) return "0s";
 
-    const days = Math.floor(seconds / (24 * 60 * 60));
-    seconds -= days * (24 * 60 * 60);
-
-    const hours = Math.floor(seconds / (60 * 60));
-    seconds -= hours * (60 * 60);
-
-    const minutes = Math.floor(seconds / 60);
-    seconds -= minutes * 60;
+    const days = Math.floor(time / (24 * 60 * 60));
+    const hours = Math.floor(time / (60 * 60));
+    const minutes = Math.floor(time / 60);
 
     let places = 2;
     let out = "";
@@ -61,8 +56,8 @@ function styleTime(time) {
         out += `${minutes}m`;
         places--;
     }
-    if (places > 0 && seconds > 0) {
-        out += `${seconds}s`;
+    if (places > 0 && seconds%60 > 0) {
+        out += `${seconds%60}s`;
         places--;
     }
 
