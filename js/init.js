@@ -27,7 +27,7 @@ if (typeof localStorage.time === "undefined") localStorage.time = localStorage.i
 if (typeof localStorage.speed === "undefined") localStorage.speed = localStorage.initialSpeed;
 if (typeof localStorage.criteria === "undefined") localStorage.criteria = JSON.stringify([{ unit: 1, time: 2, speed: 3 }]);
 
-// Inisialisasi timer
+// Inisialisasi timer dan kriteria trakter
 timeLabel.textContent = styleTime(localStorage.time);
 speedLabel.textContent = localStorage.speed;
 
@@ -41,6 +41,9 @@ initialSpeedInput.valueAsNumber = localStorage.initialSpeed;
 let isRunning = false;
 let startTimestamp = 0;
 let targetTimestamp = 0;
+
+const channelID = new URLSearchParams(window.location.search).get("id");
+if (channelID == null) throw Error("Trakteer Channel ID is not set. Adding ?id= then your trakteer's channel ID on the link and reload should do it");
 
 // Fungsi global
 function styleTime(time) {
@@ -81,7 +84,6 @@ function printCriteria() {
     criteriaPanel.innerHTML = "";
     JSON.parse(localStorage.criteria).forEach(el => {
         const { unit, time, speed } = el;
-        console.table(el)
 
         let unitElement = document.createElement("div");
         let timeElement = document.createElement("div");
@@ -92,7 +94,7 @@ function printCriteria() {
         speedElement.classList.add("criteria-table__value");
 
         unitElement.textContent = unit;
-        timeElement.textContent = time;
+        timeElement.textContent = styleTime(time);
         speedElement.textContent = speed;
 
         criteriaPanel.appendChild(unitElement);

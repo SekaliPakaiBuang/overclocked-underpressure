@@ -16,10 +16,10 @@ function addTime(value = 0) {
     const now = performance.now();
     value = Math.trunc(value);
     if (isNaN(value)) return;
-    
+
     localStorage.time = Number(localStorage.time) + value
     if (localStorage.time <= 0) localStorage.time = 0;
-    
+
     startTimestamp = now;
     targetTimestamp = startTimestamp + (localStorage.time * 100000 / localStorage.speed);
 
@@ -60,7 +60,7 @@ function toggleTimer() {
             break;
         case true:
             isRunning = false;
-            localStorage.time = (targetTimestamp - now) / 1000 * (localStorage.speed/100);
+            localStorage.time = (targetTimestamp - now) / 1000 * (localStorage.speed / 100);
 
             playPauseBtn.src = "svg/play.svg";
             break;
@@ -81,7 +81,7 @@ let loop = () => {
     if (isRunning) {
         const now = performance.now();
 
-        localStorage.time = (targetTimestamp - now) / 1000 * (localStorage.speed/100);
+        localStorage.time = (targetTimestamp - now) / 1000 * (localStorage.speed / 100);
 
         if (localStorage.time <= 0) {
             isRunning = false;
@@ -97,3 +97,16 @@ let loop = () => {
     requestAnimationFrame(loop);
 }
 loop();
+
+// Logic Trakteer
+TrakteerWS.register(channelID);
+
+// Trakteer Test
+TrakteerWS.onStreamTest = ({ quantity }) => {
+
+};
+
+// Trakteer Real
+TrakteerWS.onNewTipSuccess = ({ quantity }) => {
+
+};
