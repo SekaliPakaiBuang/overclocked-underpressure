@@ -108,5 +108,18 @@ TrakteerWS.onStreamTest = ({ quantity }) => {
 
 // Trakteer Real
 TrakteerWS.onNewTipSuccess = ({ quantity }) => {
+    const criteria = JSON.parse(localStorage.criteria);
 
+    while (true) {
+        let passingCriteria = criteria.filter(el => el.unit <= quantity);
+        passingCriteria.sort((a, b) => b.unit - a.unit);
+
+        if ((passingCriteria[0]?.unit <= quantity) && isRunning) {
+            quantity -= passingCriteria[0].unit;
+
+            addTime(passingCriteria[0].time);
+            addSpeed(passingCriteria[0].speed);
+        }
+        else break;
+    }
 };
