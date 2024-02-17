@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div id="timer-speed" class="panel-stats horizontal">
+        <div id="timer-overclock" class="panel-stats horizontal">
             <img src="svg/speed.svg" alt="" width="32" height="32" class="panel-stats__icon">
             <div class="panel-stats__values vertical">
                 <div class="panel-stats__value">--</div>
@@ -60,11 +60,11 @@
                 </div>
             </div>
             <div class="settings-row vertical">
-                <div class="settings-row__name center">Inc/Dec Speed (%)</div>
-                <input type="number" name="add_speed" class="settings-row__value" step="1">
+                <div class="settings-row__name center">Inc/Dec Overclock (%)</div>
+                <input type="number" name="add_overclock" class="settings-row__value" step="1">
                 <div class="horizontal center">
-                    <img onclick="addSpeed(modifySpeedInput.valueAsNumber)" src="svg/plus-circle.svg" width="16"
-                        height="16" class="btn" title="Add Speed">
+                    <img onclick="overclock(modifyOverclockInput.valueAsNumber)" src="svg/plus-circle.svg" width="16"
+                        height="16" class="btn" title="Add Overclock">
                 </div>
             </div>
         </div>
@@ -81,11 +81,11 @@
         </div>
         <div class="settings-row horizontal">
             <label class="settings-row__name">Initial Overclock (%)</label>
-            <input type="number" name="initial_speed" class="settings-row__value" step="1" min="0">
+            <input type="number" name="initial_overclock" class="settings-row__value" step="1" min="0">
         </div>
         <div class="settings-row horizontal">
             <label class="settings-row__name">Max Overclock (%)</label>
-            <input type="number" name="max_speed" class="settings-row__value" step="1" min="0">
+            <input type="number" name="max_overclock" class="settings-row__value" step="1" min="0">
         </div>
         <div class="horizontal center">
             <img onclick="saveTimerSettings()" src="svg/save.svg" width="16" height="16" class="btn" title="Save">

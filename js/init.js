@@ -1,16 +1,16 @@
 // Metrik donathon
 const timeLabel = document.querySelector("#timer-time .panel-stats__value");
-const speedLabel = document.querySelector("#timer-speed .panel-stats__value");
+const overclockLabel = document.querySelector("#timer-overclock .panel-stats__value");
 
 // Input pengaturan
 const initialTimeInput = document.querySelector("input[name=initial_time]");
-const initialSpeedInput = document.querySelector("input[name=initial_speed]");
+const initialOverclockInput = document.querySelector("input[name=initial_overclock]");
 const maxTimeInput = document.querySelector("input[name=max_time]");
-const maxSpeedInput = document.querySelector("input[name=max_speed]");
+const maxOverclockInput = document.querySelector("input[name=max_overclock]");
 
 // Input override
 const modifyTimeInput = document.querySelector("input[name=add_time]");
-const modifySpeedInput = document.querySelector("input[name=add_speed]");
+const modifyOverclockInput = document.querySelector("input[name=add_overclock]");
 
 // Panel
 const settingsPanel = document.querySelector("#settings");
@@ -22,20 +22,20 @@ const resetBtn = document.querySelector("#btn__reset");
 
 // Inisialisasi variable
 if (typeof localStorage.initialTime === "undefined") localStorage.initialTime = 3600;
-if (typeof localStorage.initialSpeed === "undefined") localStorage.initialSpeed = 100;
+if (typeof localStorage.initialOverclock === "undefined") localStorage.initialOverclock = 100;
 if (typeof localStorage.time === "undefined") localStorage.time = localStorage.initialTime;
-if (typeof localStorage.speed === "undefined") localStorage.speed = localStorage.initialSpeed;
-if (typeof localStorage.criteria === "undefined") localStorage.criteria = JSON.stringify([{ unit: 1, time: 2, speed: 3 }]);
+if (typeof localStorage.overclock === "undefined") localStorage.overclock = localStorage.initialOverclock;
+if (typeof localStorage.criteria === "undefined") localStorage.criteria = JSON.stringify([{ unit: 1, time: 2, overclock: 3 }]);
 
 // Inisialisasi timer dan kriteria trakter
 timeLabel.textContent = styleTime(localStorage.time);
-speedLabel.textContent = localStorage.speed;
+overclockLabel.textContent = localStorage.overclock;
 
 printCriteria();
 
 // Inisialisasi input
 initialTimeInput.valueAsNumber = localStorage.initialTime;
-initialSpeedInput.valueAsNumber = localStorage.initialSpeed;
+initialOverclockInput.valueAsNumber = localStorage.initialOverclock;
 
 // Variabel global
 let isRunning = false;
@@ -83,22 +83,22 @@ function styleTime(time) {
 function printCriteria() {
     criteriaPanel.innerHTML = "";
     JSON.parse(localStorage.criteria).forEach(el => {
-        const { unit, time, speed } = el;
+        const { unit, time, overclock } = el;
 
         let unitElement = document.createElement("div");
         let timeElement = document.createElement("div");
-        let speedElement = document.createElement("div");
+        let overclockElement = document.createElement("div");
 
         unitElement.classList.add("criteria-table__value");
         timeElement.classList.add("criteria-table__value");
-        speedElement.classList.add("criteria-table__value");
+        overclockElement.classList.add("criteria-table__value");
 
         unitElement.textContent = unit;
         timeElement.textContent = styleTime(time);
-        speedElement.textContent = speed + "%";
+        overclockElement.textContent = overclock + "%";
 
         criteriaPanel.appendChild(unitElement);
         criteriaPanel.appendChild(timeElement);
-        criteriaPanel.appendChild(speedElement);
+        criteriaPanel.appendChild(overclockElement);
     });
 }

@@ -70,7 +70,7 @@ body,
     font-weight: 500;
 }
 
-#timer-speed .panel-stats__value::after {
+#timer-overclock .panel-stats__value::after {
     content: "%";
 }
 

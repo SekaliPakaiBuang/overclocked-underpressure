@@ -1,11 +1,11 @@
 // Logic tombol
 function saveTimerSettings() {
     const inputTime = Math.trunc(initialTimeInput.valueAsNumber);
-    const inputSpeed = Math.trunc(initialSpeedInput.valueAsNumber * 100) / 100;
+    const inputOverclock = Math.trunc(initialOverclockInput.valueAsNumber * 100) / 100;
 
-    if (inputTime > 0 && inputSpeed > 0) {
+    if (inputTime > 0 && inputOverclock > 0) {
         localStorage.initialTime = inputTime;
-        localStorage.initialSpeed = inputSpeed;
+        localStorage.initialOverclock = inputOverclock;
 
         alert("Successfully saved");
     }
@@ -21,25 +21,25 @@ function addTime(value = 0) {
     if (localStorage.time <= 0) localStorage.time = 0;
 
     startTimestamp = now;
-    targetTimestamp = startTimestamp + (localStorage.time * 100000 / localStorage.speed);
+    targetTimestamp = startTimestamp + (localStorage.time * 100000 / localStorage.overclock);
 
     timeLabel.classList.add("blink");
     setTimeout(() => timeLabel.classList.remove("blink"), 1500);
 }
 
-function addSpeed(value = 0) {
+function overclock(value = 0) {
     const now = performance.now();
     value = Math.trunc(value);
     if (isNaN(value)) return;
 
-    localStorage.speed = Number(localStorage.speed) + value;
-    if (localStorage.speed <= 0) localStorage.speed = 1;
+    localStorage.overclock = Number(localStorage.overclock) + value;
+    if (localStorage.overclock <= 0) localStorage.overclock = 1;
 
     startTimestamp = now;
-    targetTimestamp = startTimestamp + (localStorage.time * 100000 / localStorage.speed);
+    targetTimestamp = startTimestamp + (localStorage.time * 100000 / localStorage.overclock);
 
-    speedLabel.classList.add("blink");
-    setTimeout(() => speedLabel.classList.remove("blink"), 1500);
+    overclockLabel.classList.add("blink");
+    setTimeout(() => overclockLabel.classList.remove("blink"), 1500);
 }
 
 function toggleSettings() {
@@ -54,13 +54,13 @@ function toggleTimer() {
         case false:
             isRunning = true;
             startTimestamp = now;
-            targetTimestamp = startTimestamp + (localStorage.time * 100000 / localStorage.speed);
+            targetTimestamp = startTimestamp + (localStorage.time * 100000 / localStorage.overclock);
 
             playPauseBtn.src = "svg/pause.svg";
             break;
         case true:
             isRunning = false;
-            localStorage.time = (targetTimestamp - now) / 1000 * (localStorage.speed / 100);
+            localStorage.time = (targetTimestamp - now) / 1000 * (localStorage.overclock / 100);
 
             playPauseBtn.src = "svg/play.svg";
             break;
@@ -71,7 +71,7 @@ function resetTimer() {
     isRunning = false;
 
     localStorage.time = localStorage.initialTime;
-    localStorage.speed = localStorage.initialSpeed;
+    localStorage.overclock = localStorage.initialOverclock;
 
     playPauseBtn.src = "svg/play.svg";
 }
@@ -81,7 +81,7 @@ let loop = () => {
     if (isRunning) {
         const now = performance.now();
 
-        localStorage.time = (targetTimestamp - now) / 1000 * (localStorage.speed / 100);
+        localStorage.time = (targetTimestamp - now) / 1000 * (localStorage.overclock / 100);
 
         if (localStorage.time <= 0) {
             isRunning = false;
@@ -92,7 +92,7 @@ let loop = () => {
     }
 
     timeLabel.textContent = styleTime(localStorage.time);
-    speedLabel.textContent = localStorage.speed;
+    overclockLabel.textContent = localStorage.overclock;
 
     requestAnimationFrame(loop);
 }
@@ -118,7 +118,7 @@ TrakteerWS.onNewTipSuccess = ({ quantity }) => {
             quantity -= passingCriteria[0].unit;
 
             addTime(passingCriteria[0].time);
-            addSpeed(passingCriteria[0].speed);
+            overclock(passingCriteria[0].overclock);
         }
         else break;
     }
