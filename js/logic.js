@@ -9,7 +9,7 @@ function saveTimerSettings() {
 
         alert("Successfully saved");
     }
-    else alert("Initial Time & Initial Speed should be greater than zero");
+    else alert("Initial Time & Initial Overclock should be greater than zero");
 }
 
 function addTime(value = 0) {

@@ -95,7 +95,7 @@ function printCriteria() {
 
         unitElement.textContent = unit;
         timeElement.textContent = styleTime(time);
-        speedElement.textContent = speed;
+        speedElement.textContent = speed + "%";
 
         criteriaPanel.appendChild(unitElement);
         criteriaPanel.appendChild(timeElement);
