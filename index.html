@@ -69,6 +69,10 @@
             </div>
         </div>
         <hr>
+        <button
+            onclick="if (confirm('All of the timer data will be gone! Proceed to reset?')) {localStorage.clear();location.reload(true);}">
+            Reset All Settings to Default
+        </button>
 
         <!-- Pengaturan Donathon -->
         <label><b>Timer Settings</b></label>
@@ -96,7 +100,7 @@
         <!-- Pengaturan Kriteria Donathon -->
         <label><b>Criteria Settings</b></label>
         <div class="horizontal">
-            
+
         </div>
         <div class="settings-row horizontal">
             <label class="settings-row__name">Trakteer Unit</label>
@@ -112,9 +116,9 @@
         </div>
         <div class="horizontal center">
             <img onclick="addCriteria()" src="svg/plus-circle.svg" width="24" height="24" class="btn" title="Add Item">
-            <img onclick="removeCriteria()" src="svg/minus-circle.svg" width="24" height="24" class="btn" title="Remove Item">
+            <img onclick="removeCriteria()" src="svg/minus-circle.svg" width="24" height="24" class="btn"
+                title="Remove Item">
         </div>
-
     </div>
 
     <div class="horizontal center">
