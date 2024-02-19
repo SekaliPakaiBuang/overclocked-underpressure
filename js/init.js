@@ -48,7 +48,7 @@ if (channelID == null) throw Error("Trakteer Channel ID is not set. Adding ?id= 
 // Fungsi global
 function styleTime(time) {
     let sign = time < 0 ? "-" : "";
-    let seconds = Math.ceil(Math.abs(time));
+    let seconds = Math.trunc(Math.abs(time));
     if (time == 0) return "0s";
 
     let days = Math.floor(seconds / (24 * 60 * 60));
