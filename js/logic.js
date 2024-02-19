@@ -76,6 +76,59 @@ function resetTimer() {
     playPauseBtn.src = "svg/play.svg";
 }
 
+function addCriteria() {
+    const unit = Math.trunc(unitInput.valueAsNumber);
+    const time = Math.trunc(timeInput.valueAsNumber);
+    const overclock = Math.trunc(overclockInput.valueAsNumber);
+
+    if (isNaN(unit) || isNaN(time) || isNaN(overclock)) {
+        alert("Unit, Time, and Overclock cannot be empty");
+        return;
+    }
+
+    let criteria = JSON.parse(localStorage.criteria);
+
+    if (criteria.some(el => el.unit === unit)) {
+        criteria = criteria.filter(el => el.unit != unit);
+    }
+    
+    criteria.push({unit, time, overclock});
+    criteria.sort((a, b) => a.unit - b.unit)
+    
+    localStorage.criteria = JSON.stringify(criteria);
+    updateCriteria();
+
+    unitInput.value = "";
+    timeInput.value = "";
+    overclockInput.value = "";
+}
+
+function removeCriteria() {
+    const unit = Math.trunc(unitInput.valueAsNumber);
+
+    if (isNaN(unit)) {
+        alert("Unit cannot be empty");
+        return;
+    }
+
+    let criteria = JSON.parse(localStorage.criteria);
+
+    if (criteria.some(el => el.unit === unit)) {
+        criteria = criteria.filter(el => el.unit != unit);
+    }
+    else {
+        alert("Criteria not found");
+        return;
+    }
+
+    localStorage.criteria = JSON.stringify(criteria);
+    updateCriteria();
+
+    unitInput.value = "";
+    timeInput.value = "";
+    overclockInput.value = "";
+}
+
 // Logic timer
 let loop = () => {
     if (isRunning) {

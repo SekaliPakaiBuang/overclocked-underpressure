@@ -12,6 +12,11 @@ const maxOverclockInput = document.querySelector("input[name=max_overclock]");
 const modifyTimeInput = document.querySelector("input[name=add_time]");
 const modifyOverclockInput = document.querySelector("input[name=add_overclock]");
 
+// Input Criteria
+const unitInput = document.querySelector("input[name=unit]");
+const timeInput = document.querySelector("input[name=time]");
+const overclockInput = document.querySelector("input[name=overclock]");
+
 // Panel
 const settingsPanel = document.querySelector("#settings");
 const criteriaPanel = document.querySelector("#criteria");
@@ -31,7 +36,7 @@ if (typeof localStorage.criteria === "undefined") localStorage.criteria = JSON.s
 timeLabel.textContent = styleTime(localStorage.time);
 overclockLabel.textContent = localStorage.overclock;
 
-printCriteria();
+updateCriteria();
 
 // Inisialisasi input
 initialTimeInput.valueAsNumber = localStorage.initialTime;
@@ -81,7 +86,7 @@ function styleTime(time) {
     return sign + out.trim();
 }
 
-function printCriteria() {
+function updateCriteria() {
     criteriaPanel.innerHTML = "";
     JSON.parse(localStorage.criteria).forEach(el => {
         const { unit, time, overclock } = el;

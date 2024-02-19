@@ -60,12 +60,12 @@ body,
 
 /* Teks */
 .panel-stats__value {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
 }
 
 .panel-stats__key {
-    font-size: 12px;
+    font-size: 16px;
     color: #616161;
     font-weight: 500;
 }
@@ -89,14 +89,14 @@ hr {
 }
 
 .criteria-table__header {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
 
     text-align: center;
 }
 
 .criteria-table__value {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 500;
 
     text-align: center;
@@ -118,7 +118,7 @@ hr {
 .settings-row__value {
     justify-self: center;
     align-self: center;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 /* Animasi */

@@ -22,7 +22,7 @@
             <img src="svg/speed.svg" alt="" width="32" height="32" class="panel-stats__icon">
             <div class="panel-stats__values vertical">
                 <div class="panel-stats__value">--</div>
-                <div class="panel-stats__key">Overclock Factor</div>
+                <div class="panel-stats__key">Overclock</div>
             </div>
         </div>
     </div>
@@ -42,9 +42,9 @@
     <div id="settings" class="panel vertical hidden">
         <!-- Kontrol Timer -->
         <div class="horizontal center">
-            <img id="btn__playpause" onclick="toggleTimer()" src="svg/play.svg" width="16" height="16" class="btn"
+            <img id="btn__playpause" onclick="toggleTimer()" src="svg/play.svg" width="24" height="24" class="btn"
                 title="Play Timer">
-            <img id="btn__reset" onclick="resetTimer()" src="svg/repeat.svg" width="16" height="16" class="btn"
+            <img id="btn__reset" onclick="resetTimer()" src="svg/repeat.svg" width="24" height="24" class="btn"
                 title="Reset Timer">
         </div>
         <hr>
@@ -52,25 +52,26 @@
         <!-- Manual Override -->
         <div class="settings-row horizontal">
             <div class="settings-row vertical">
-                <div class="settings-row__name center">Inc/Dec Time (sec)</div>
+                <div class="settings-row__name center">Adjust Time</div>
                 <input type="number" name="add_time" class="settings-row__value" step="1">
                 <div class="horizontal center">
-                    <img onclick="addTime(modifyTimeInput.valueAsNumber)" src="svg/plus-circle.svg" width="16"
-                        height="16" class="btn" title="Add Time">
+                    <img onclick="addTime(modifyTimeInput.valueAsNumber)" src="svg/plus-circle.svg" width="24"
+                        height="24" class="btn" title="Add Time">
                 </div>
             </div>
             <div class="settings-row vertical">
-                <div class="settings-row__name center">Inc/Dec Overclock (%)</div>
+                <div class="settings-row__name center">Adjust Overclock</div>
                 <input type="number" name="add_overclock" class="settings-row__value" step="1">
                 <div class="horizontal center">
-                    <img onclick="overclock(modifyOverclockInput.valueAsNumber)" src="svg/plus-circle.svg" width="16"
-                        height="16" class="btn" title="Add Overclock">
+                    <img onclick="overclock(modifyOverclockInput.valueAsNumber)" src="svg/plus-circle.svg" width="24"
+                        height="24" class="btn" title="Add Overclock">
                 </div>
             </div>
         </div>
         <hr>
 
         <!-- Pengaturan Donathon -->
+        <label>Timer Settings</label>
         <div class="settings-row horizontal">
             <label class="settings-row__name">Initial Time (sec)</label>
             <input type="number" name="initial_time" class="settings-row__value" step="1" min="0">
@@ -81,21 +82,43 @@
         </div>
         <div class="settings-row horizontal">
             <label class="settings-row__name">Initial Overclock (%)</label>
-            <input type="number" name="initial_overclock" class="settings-row__value" step="1" min="0">
+            <input type="number" name="initial_overclock" class="settings-row__value" step="1" min="1">
         </div>
         <div class="settings-row horizontal">
             <label class="settings-row__name">Max Overclock (%)</label>
-            <input type="number" name="max_overclock" class="settings-row__value" step="1" min="0">
+            <input type="number" name="max_overclock" class="settings-row__value" step="1" min="1">
         </div>
         <div class="horizontal center">
-            <img onclick="saveTimerSettings()" src="svg/save.svg" width="16" height="16" class="btn" title="Save">
+            <img onclick="saveTimerSettings()" src="svg/save.svg" width="24" height="24" class="btn" title="Save">
         </div>
         <hr>
+
+        <!-- Pengaturan Kriteria Donathon -->
+        <label>Criteria Settings</label>
+        <div class="horizontal">
+            
+        </div>
+        <div class="settings-row horizontal">
+            <label class="settings-row__name">Trakteer Unit</label>
+            <input type="number" name="unit" class="settings-row__value" step="1" min="0">
+        </div>
+        <div class="settings-row horizontal">
+            <label class="settings-row__name">Time Increase (sec)</label>
+            <input type="number" name="time" class="settings-row__value" step="1" min="0">
+        </div>
+        <div class="settings-row horizontal">
+            <label class="settings-row__name">Overclock (%)</label>
+            <input type="number" name="overclock" class="settings-row__value" step="1" min="1">
+        </div>
+        <div class="horizontal center">
+            <img onclick="addCriteria()" src="svg/plus-circle.svg" width="24" height="24" class="btn" title="Add Item">
+            <img onclick="removeCriteria()" src="svg/minus-circle.svg" width="24" height="24" class="btn" title="Remove Item">
+        </div>
 
     </div>
 
     <div class="horizontal center">
-        <img onclick="toggleSettings(this)" src="svg/dropdown.svg" width="16" height="16" class="btn">
+        <img onclick="toggleSettings(this)" src="svg/dropdown.svg" width="24" height="24" class="btn">
     </div>
 
     <script defer src="https://assets.trakteer.id/js/trws.min.js"></script>
