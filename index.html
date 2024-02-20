@@ -71,7 +71,7 @@
         <hr>
         <button
             onclick="document.querySelector('#modal-delete').showModal()">
-            Reset All Settings to Default
+            Clear Timer Data
         </button>
 
         <!-- Pengaturan Donathon -->
@@ -126,9 +126,9 @@
     </div>
 
     <dialog id="modal-delete" class="">
-        <p>All of the timer data will be gone! Proceed to reset?</p>
+        <p>All of the timer data will be gone! Proceed to clear?</p>
         <div class="settings-row horizontal center">
-            <button onclick="localStorage.clear();location.reload(true)">Reset</button>
+            <button onclick="localStorage.clear();location.reload(true)">Clear</button>
             <button onclick="document.querySelector('#modal-delete').close()">Cancel</button>
         </div>
     </dialog>
