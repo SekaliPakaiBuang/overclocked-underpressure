@@ -17,7 +17,7 @@ function addTime(value = 0) {
     value = Math.trunc(value);
     if (isNaN(value)) return;
 
-    localStorage.time = Number(localStorage.time) + value
+    localStorage.time = Number(localStorage.time) + value;
     if (localStorage.time <= 0) localStorage.time = 0;
 
     startTimestamp = now;
@@ -98,7 +98,7 @@ function addCriteria() {
     }
     
     criteria.push({unit, time, overclock});
-    criteria.sort((a, b) => a.unit - b.unit)
+    criteria.sort((a, b) => a.unit - b.unit);
     
     localStorage.criteria = JSON.stringify(criteria);
     updateCriteria();
