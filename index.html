@@ -70,7 +70,7 @@
         </div>
         <hr>
         <button
-            onclick="if (confirm('All of the timer data will be gone! Proceed to reset?')) {localStorage.clear();location.reload(true);}">
+            onclick="document.querySelector('#modal-delete').showModal()">
             Reset All Settings to Default
         </button>
 
@@ -124,6 +124,14 @@
     <div class="horizontal center">
         <img onclick="toggleSettings(this)" src="svg/dropdown.svg" width="24" height="24" class="btn">
     </div>
+
+    <dialog id="modal-delete" class="">
+        <p>All of the timer data will be gone! Proceed to reset?</p>
+        <div class="settings-row horizontal center">
+            <button onclick="localStorage.clear();location.reload(true)">Reset</button>
+            <button onclick="document.querySelector('#modal-delete').close()">Cancel</button>
+        </div>
+    </dialog>
 
     <script defer src="https://assets.trakteer.id/js/trws.min.js"></script>
     <script defer src="js/init.js"></script>

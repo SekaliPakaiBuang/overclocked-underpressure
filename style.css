@@ -19,6 +19,7 @@ body {
 
 /* Flex */
 body,
+dialog[open],
 .vertical,
 .panel-stats {
     display: flex;
