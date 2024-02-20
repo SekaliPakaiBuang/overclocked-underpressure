@@ -86,6 +86,11 @@ function addCriteria() {
         return;
     }
 
+    if (unit <= 0) {
+        alert("Unit should be greater than zero");
+        return;
+    }
+
     let criteria = JSON.parse(localStorage.criteria);
 
     if (criteria.some(el => el.unit === unit)) {
@@ -108,6 +113,11 @@ function removeCriteria() {
 
     if (isNaN(unit)) {
         alert("Unit cannot be empty");
+        return;
+    }
+
+    if (unit <= 0) {
+        alert("Unit should be greater than zero");
         return;
     }
 
