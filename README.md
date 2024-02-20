@@ -5,14 +5,15 @@ Terintegrasi dengan Trakteer.
 - Timer donathon biasa kayak trakteer punya
 - "Overclocking" maksudnya **1 detik in real time** bisa jadi **10 detik di timer**
 ## Yang Kamu Butuhkan
- - OBS Studio, yang versi terbaru biar gampang
+- OBS Studio, yang versi terbaru biar gampang
+- Channel ID dari akun kreator Trakteer kamu
 ## Yang Kamu Harus Lakukan
 - [Siapkan channel ID Trakteer](https://trakteer.id/manage/webhook/websocket)
- - Buka OBS Studio, tambah browser source baru (kalo gatau caranya cari di internet)
- - Copy link github pagenya (dibawahnya about section repo ini) masukin di URL Browser Source
- - Copy channel ID Trakteer, tambahin ke URL, formatnya **&id=xxxxxxxxx** dan x banyak itu channel ID kamu
- - Ganti width & height sesuai kebutuhan (saranku sih width 320)
- - Pencet OK
+- Buka OBS Studio, tambah browser source baru (kalo gatau caranya cari di internet)
+- Copy link github pagenya (dibawahnya about section repo ini) masukin di URL Browser Source
+- Copy Channel ID Trakteer kamu, tambahin ke URL, formatnya **&id=[channel_id_trakteer_kamu]**
+- Ganti width & height sesuai kebutuhan (saranku sih width 320)
+- Pencet OK
 ## Yang Bisa Kamu Lakukan
 Kalo kalian merasa overlay nya kok jelek tampilannya apa gimana, kalian bisa modifikasi dengan 2 cara:
 1. Pake Custom CSS (biar gampang)
@@ -30,3 +31,6 @@ kalian bisa edit filenya.
 Kan open source, mending di edit sekalian gak sih, syukur-syukur hosting sendiri ygy.
 
 NB: Pastikan kalian mudeng HTML, JS, dan CSS ya adik-adik, kalo gak mudeng mending minta tolong temenmu
+
+# Credits
+Icons by [Iconoir](https://iconoir.com/)
