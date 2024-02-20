@@ -17,7 +17,7 @@ function addTime(value = 0) {
     value = Math.trunc(value);
     if (isNaN(value)) return;
 
-    localStorage.time = Number(localStorage.time) + value
+    localStorage.time = Number(localStorage.time) + value;
     if (localStorage.time <= 0) localStorage.time = 0;
 
     startTimestamp = now;
@@ -86,6 +86,11 @@ function addCriteria() {
         return;
     }
 
+    if (unit <= 0) {
+        alert("Unit should be greater than zero");
+        return;
+    }
+
     let criteria = JSON.parse(localStorage.criteria);
 
     if (criteria.some(el => el.unit === unit)) {
@@ -93,7 +98,7 @@ function addCriteria() {
     }
     
     criteria.push({unit, time, overclock});
-    criteria.sort((a, b) => a.unit - b.unit)
+    criteria.sort((a, b) => a.unit - b.unit);
     
     localStorage.criteria = JSON.stringify(criteria);
     updateCriteria();
@@ -108,6 +113,11 @@ function removeCriteria() {
 
     if (isNaN(unit)) {
         alert("Unit cannot be empty");
+        return;
+    }
+
+    if (unit <= 0) {
+        alert("Unit should be greater than zero");
         return;
     }
 
