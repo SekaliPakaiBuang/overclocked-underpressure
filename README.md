@@ -1,5 +1,5 @@
 # Overclocked Underpressure by SekaliPakaiBuang
-Timer donathon kayak biasanya, bukan cuma timernya nambah, timernya nambah cepet.
+Timer donathon kayak biasanya, bukan cuma timernya nambah, timernya nambah cepet.\n
 Terintegrasi dengan Trakteer.
 ## Fitur
 - Timer donathon biasa kayak trakteer punya
@@ -11,7 +11,7 @@ Terintegrasi dengan Trakteer.
 - [Siapkan channel ID Trakteer](https://trakteer.id/manage/webhook/websocket)
 - Buka OBS Studio, tambah browser source baru (kalo gatau caranya cari di internet)
 - Copy link github pagenya (dibawahnya about section repo ini) masukin di URL Browser Source
-- Copy Channel ID Trakteer kamu, tambahin ke URL, formatnya **&id=[channel_id_trakteer_kamu]**
+- Copy Channel ID Trakteer kamu, tambahin ke URL, formatnya **&id=channel_id_trakteer_kamu**
 - Ganti width & height sesuai kebutuhan (saranku sih width 320)
 - Pencet OK
 ## Yang Bisa Kamu Lakukan
@@ -32,5 +32,5 @@ Kan open source, mending di edit sekalian gak sih, syukur-syukur hosting sendiri
 
 NB: Pastikan kalian mudeng HTML, JS, dan CSS ya adik-adik, kalo gak mudeng mending minta tolong temenmu
 
-# Credits
+## Credits
 Icons by [Iconoir](https://iconoir.com/)
