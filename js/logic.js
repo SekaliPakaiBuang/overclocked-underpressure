@@ -1,24 +1,48 @@
-// Logic tombol
+// Pengaturan timer umum
 function saveTimerSettings() {
     const inputTime = Math.trunc(initialTimeInput.valueAsNumber);
     const inputOverclock = Math.trunc(initialOverclockInput.valueAsNumber * 100) / 100;
 
+    const inputMaxTime = Math.trunc(maxTimeInput.valueAsNumber);
+    const inputMaxOverclock = Math.trunc(maxOverclockInput.valueAsNumber * 100) / 100;
+
     if (inputTime > 0 && inputOverclock > 0) {
         localStorage.initialTime = inputTime;
         localStorage.initialOverclock = inputOverclock;
-
-        alert("Successfully saved");
+        alert("Saved successfully");
+    } else {
+        alert("Initial Time & Initial Overclock should be greater than zero");
     }
-    else alert("Initial Time & Initial Overclock should be greater than zero");
+
+    if (!isNaN(inputMaxTime) && inputMaxTime > 0) {
+        localStorage.maxTime = inputMaxTime;
+    } else {
+        localStorage.removeItem("maxTime");
+    }
+
+    if (!isNaN(inputMaxOverclock) && inputMaxOverclock > 0) {
+        localStorage.maxOverclock = inputMaxOverclock;
+    } else {
+        localStorage.removeItem("maxOverclock");
+    }
 }
 
+// Tambah waktu
 function addTime(value = 0) {
     const now = performance.now();
-    value = Math.trunc(value);
-    if (isNaN(value)) return;
 
-    localStorage.time = Number(localStorage.time) + value;
+    const currentTime = Number(localStorage.time);
+    const maxTime = Number(localStorage.maxTime);
+
+    value = Math.trunc(value);
+
+    if (isNaN(value)) return;
+    if (!isNaN(maxTime) && (currentTime >= maxTime)) return;
+
+    localStorage.time = currentTime + value;
+
     if (localStorage.time <= 0) localStorage.time = 0;
+    if (localStorage.time >= maxTime) localStorage.time = maxTime;
 
     startTimestamp = now;
     targetTimestamp = startTimestamp + (localStorage.time * 100000 / localStorage.overclock);
@@ -27,13 +51,22 @@ function addTime(value = 0) {
     setTimeout(() => timeLabel.classList.remove("blink"), 1500);
 }
 
+// Tambah kecepatan (overclocking)
 function overclock(value = 0) {
     const now = performance.now();
-    value = Math.trunc(value);
-    if (isNaN(value)) return;
 
-    localStorage.overclock = Number(localStorage.overclock) + value;
+    const currentOverclock = Number(localStorage.overclock);
+    const maxOverclock = Number(localStorage.maxOverclock);
+
+    value = Math.trunc(value);
+
+    if (isNaN(value)) return;
+    if (!isNaN(maxOverclock) && (currentOverclock >= maxOverclock)) return;
+
+    localStorage.overclock = currentOverclock + value;
+
     if (localStorage.overclock <= 0) localStorage.overclock = 1;
+    if (localStorage.overclock >= maxOverclock) localStorage.overclock = maxOverclock;
 
     startTimestamp = now;
     targetTimestamp = startTimestamp + (localStorage.time * 100000 / localStorage.overclock);
@@ -46,8 +79,10 @@ function toggleSettings() {
     settingsPanel.classList.toggle("hidden");
 }
 
+// Play/pause
 function toggleTimer() {
     const now = performance.now();
+
     if (localStorage.time <= 0) return;
 
     switch (isRunning) {
@@ -55,18 +90,17 @@ function toggleTimer() {
             isRunning = true;
             startTimestamp = now;
             targetTimestamp = startTimestamp + (localStorage.time * 100000 / localStorage.overclock);
-
             playPauseBtn.src = "svg/pause.svg";
             break;
         case true:
             isRunning = false;
             localStorage.time = (targetTimestamp - now) / 1000 * (localStorage.overclock / 100);
-
             playPauseBtn.src = "svg/play.svg";
             break;
     }
 }
 
+// Restart timer
 function resetTimer() {
     isRunning = false;
 
@@ -76,6 +110,7 @@ function resetTimer() {
     playPauseBtn.src = "svg/play.svg";
 }
 
+// Tambah timer rules
 function addCriteria() {
     const unit = Math.trunc(unitInput.valueAsNumber);
     const time = Math.trunc(timeInput.valueAsNumber);
@@ -96,10 +131,10 @@ function addCriteria() {
     if (criteria.some(el => el.unit === unit)) {
         criteria = criteria.filter(el => el.unit != unit);
     }
-    
-    criteria.push({unit, time, overclock});
+
+    criteria.push({ unit, time, overclock });
     criteria.sort((a, b) => a.unit - b.unit);
-    
+
     localStorage.criteria = JSON.stringify(criteria);
     updateCriteria();
 
@@ -108,6 +143,7 @@ function addCriteria() {
     overclockInput.value = "";
 }
 
+// Hapus timer rules
 function removeCriteria() {
     const unit = Math.trunc(unitInput.valueAsNumber);
 
@@ -139,7 +175,7 @@ function removeCriteria() {
     overclockInput.value = "";
 }
 
-// Logic timer
+// Loop untuk timer
 let loop = () => {
     if (isRunning) {
         const now = performance.now();
@@ -161,7 +197,7 @@ let loop = () => {
 }
 loop();
 
-// Logic Trakteer
+// Register Trakteer
 TrakteerWS.register(channelID);
 
 // Trakteer Test

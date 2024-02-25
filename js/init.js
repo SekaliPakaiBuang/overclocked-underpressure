@@ -28,6 +28,7 @@ const resetBtn = document.querySelector("#btn__reset");
 // Inisialisasi variable
 if (typeof localStorage.initialTime === "undefined") localStorage.initialTime = 3600;
 if (typeof localStorage.initialOverclock === "undefined") localStorage.initialOverclock = 100;
+
 if (typeof localStorage.time === "undefined") localStorage.time = localStorage.initialTime;
 if (typeof localStorage.overclock === "undefined") localStorage.overclock = localStorage.initialOverclock;
 if (typeof localStorage.criteria === "undefined") localStorage.criteria = JSON.stringify([{ unit: 1, time: 2, overclock: 3 }]);
@@ -41,6 +42,8 @@ updateCriteria();
 // Inisialisasi input
 initialTimeInput.valueAsNumber = localStorage.initialTime;
 initialOverclockInput.valueAsNumber = localStorage.initialOverclock;
+maxTimeInput.valueAsNumber = localStorage.maxTime;
+maxOverclockInput.valueAsNumber = localStorage.maxOverclock;
 
 // Variabel global
 let isRunning = false;
@@ -50,7 +53,7 @@ let targetTimestamp = 0;
 const channelID = new URLSearchParams(window.location.search).get("id");
 if (channelID == null) throw Error("Trakteer Channel ID is not set. Adding ?id= then your trakteer's channel ID on the link and reload should do it");
 
-// Fungsi global
+// Format waktu
 function styleTime(time) {
     let sign = time < 0 ? "-" : "";
     let seconds = Math.ceil(Math.abs(time));
@@ -86,6 +89,7 @@ function styleTime(time) {
     return sign + out.trim();
 }
 
+// Update list criteria
 function updateCriteria() {
     criteriaPanel.innerHTML = "";
     JSON.parse(localStorage.criteria).forEach(el => {
