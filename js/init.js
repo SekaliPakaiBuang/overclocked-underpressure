@@ -105,6 +105,7 @@ function updateCriteria() {
 
         unitElement.textContent = unit;
         timeElement.textContent = styleTime(time);
+        timeElement.setAttribute("title", time);
         overclockElement.textContent = overclock + "%";
 
         criteriaPanel.appendChild(unitElement);
