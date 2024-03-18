@@ -1,5 +1,5 @@
 # Overclocked Underpressure by SekaliPakaiBuang
-Timer donathon kayak biasanya, bukan cuma timernya nambah, timernya nambah cepet.\n
+Timer donathon kayak biasanya, bukan cuma timernya nambah, timernya nambah cepet.  
 Terintegrasi dengan Trakteer.
 ## Fitur
 - Timer donathon biasa kayak trakteer punya
