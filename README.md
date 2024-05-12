@@ -11,7 +11,7 @@ Terintegrasi dengan Trakteer.
 - [Siapkan channel ID Trakteer](https://trakteer.id/manage/webhook/websocket)
 - Buka OBS Studio, tambah browser source baru (kalo gatau caranya cari di internet)
 - Copy link github pagenya (dibawahnya about section repo ini) masukin di URL Browser Source
-- Copy Channel ID Trakteer kamu, tambahin ke URL, formatnya **?id=channel_id_trakteer_kamu**
+- Copy Channel ID Trakteer kamu, tambahin ke URL, formatnya `?id=channel_id_trakteer_kamu`
 - Ganti width & height sesuai kebutuhan (saranku sih width 320)
 - Pencet OK
 ## Yang Bisa Kamu Lakukan
